@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 720" width="100%" height="100%">
+  <defs>
+    <linearGradient id="termBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="100%" stop-color="#111827" />
+    </linearGradient>
+    <filter id="boxShadow" x="-3%" y="-3%" width="106%" height="106%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <rect width="980" height="720" rx="14" fill="#030712" />
+
+  <g transform="translate(20, 20)" filter="url(#boxShadow)">
+    <rect width="940" height="680" rx="10" fill="#0d1117" stroke="#30363d" stroke-width="1.2"/>
+    
+    <!-- Header -->
+    <rect width="940" height="52" rx="10" fill="#161b22"/>
+    <rect y="42" width="940" height="10" fill="#161b22"/>
+    
+    <circle cx="30" cy="26" r="14" fill="#238636"/>
+    <path d="M 24 26 L 28 30 L 37 21" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <text x="56" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#f0f6fc">GitHub Actions Log Comparison: First Push (No Cache) vs Second Push (With Cache)</text>
+    <text x="56" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" fill="#8b949e">Workflow: Java Spring Boot CI (Gradle) • Parameter: cache: 'gradle' • Branch: main</text>
+
+    <!-- Comparison Grid -->
+    <g transform="translate(20, 70)">
+      <!-- Left Column: Run 1 (Cold Cache) -->
+      <g transform="translate(0, 0)">
+        <rect width="435" height="570" rx="8" fill="#161b22" stroke="#ef4444" stroke-width="1.2"/>
+        
+        <rect width="435" height="38" rx="8" fill="#450a0a"/>
+        <rect y="28" width="435" height="10" fill="#450a0a"/>
+        <text x="15" y="24" font-family="sans-serif" font-size="12" font-weight="700" fill="#fca5a5">RUN 1: LẦN PUSH ĐẦU (CHƯA CÓ CACHE)</text>
+        <text x="420" y="24" font-family="sans-serif" font-size="11" font-weight="700" fill="#f87171" text-anchor="end">58s</text>
+
+        <!-- Log Content Run 1 -->
+        <g transform="translate(15, 50)" font-family="'Fira Code', 'JetBrains Mono', 'Courier New', monospace" font-size="11">
+          <text y="15" fill="#58a6ff">&gt; Step: Thiết lập Java JDK 17 (setup-java@v5)</text>
+          <text y="32" fill="#8b949e">Resolved temurin version 17.0.10</text>
+          <text y="49" fill="#fca5a5" font-weight="bold">Searching for gradle cache...</text>
+          <text y="66" fill="#f87171">Cache not found for input keys: gradle-Linux-x64-a1b2</text>
+          
+          <line x1="0" y1="80" x2="405" y2="80" stroke="#30363d"/>
+
+          <text y="100" fill="#58a6ff">&gt; Step: Thực thi JUnit Test (./gradlew test)</text>
+          <text y="118" fill="#8b949e">Downloading gradle-8.5-bin.zip (135 MB)...</text>
+          <text y="136" fill="#8b949e">Downloading spring-boot-starter-web.jar...</text>
+          <text y="154" fill="#8b949e">Downloading spring-boot-starter-test.jar...</text>
+          <text y="172" fill="#8b949e">Downloading junit-jupiter-engine.jar...</text>
+          <text y="190" fill="#8b949e">&gt; Task :compileJava</text>
+          <text y="208" fill="#8b949e">&gt; Task :test</text>
+          <text y="226" fill="#3fb950">BUILD SUCCESSFUL in 28s</text>
+
+          <line x1="0" y1="240" x2="405" y2="240" stroke="#30363d"/>
+
+          <text y="260" fill="#58a6ff">&gt; Step: Đóng gói bootJar</text>
+          <text y="278" fill="#3fb950">BUILD SUCCESSFUL in 21s</text>
+
+          <line x1="0" y1="295" x2="405" y2="295" stroke="#30363d"/>
+
+          <text y="315" fill="#58a6ff">&gt; Post Step: Cache Gradle Dependencies</text>
+          <text y="333" fill="#cbd5e1">Saved cache key: gradle-Linux-x64-a1b2</text>
+          <text y="351" fill="#cbd5e1">Total size saved: 95.4 MB</text>
+
+          <!-- Run 1 summary box -->
+          <rect y="380" width="405" height="110" rx="6" fill="#0d1117" stroke="#ef4444" stroke-width="1"/>
+          <text x="15" y="405" font-family="sans-serif" font-size="11" font-weight="700" fill="#fca5a5">TỔNG KẾT RUN 1:</text>
+          <text x="15" y="425" font-family="sans-serif" font-size="10" fill="#cbd5e1">• Setup-java: 3s (Tốn tìm kiếm cache)</text>
+          <text x="15" y="443" font-family="sans-serif" font-size="10" fill="#cbd5e1">• ./gradlew test: 28s (Tải mạng nhiều thư viện)</text>
+          <text x="15" y="461" font-family="sans-serif" font-size="10" fill="#cbd5e1">• ./gradlew bootJar: 21s</text>
+          <text x="15" y="479" font-family="sans-serif" font-size="11" font-weight="700" fill="#f87171">• TỔNG THỜI GIAN: 58 GIÂY</text>
+        </g>
+      </g>
+
+      <!-- Right Column: Run 2 (Warm Cache) -->
+      <g transform="translate(465, 0)">
+        <rect width="435" height="570" rx="8" fill="#161b22" stroke="#238636" stroke-width="1.5"/>
+        
+        <rect width="435" height="38" rx="8" fill="#022c22"/>
+        <rect y="28" width="435" height="10" fill="#022c22"/>
+        <text x="15" y="24" font-family="sans-serif" font-size="12" font-weight="700" fill="#6ee7b7">RUN 2: LẦN PUSH TIẾP THEO (ĐÃ CÓ CACHE)</text>
+        <text x="420" y="24" font-family="sans-serif" font-size="11" font-weight="700" fill="#3fb950" text-anchor="end">19s</text>
+
+        <!-- Log Content Run 2 -->
+        <g transform="translate(15, 50)" font-family="'Fira Code', 'JetBrains Mono', 'Courier New', monospace" font-size="11">
+          <text y="15" fill="#58a6ff">&gt; Step: Thiết lập Java JDK 17 (setup-java@v5)</text>
+          <text y="32" fill="#8b949e">Resolved temurin version 17.0.10</text>
+          <text y="49" fill="#3fb950" font-weight="bold">Restoring cache from key: gradle-Linux-x64-a1b2</text>
+          <text y="66" fill="#3fb950" font-weight="bold">Cache restored successfully from key (1.8s)</text>
+          
+          <line x1="0" y1="80" x2="405" y2="80" stroke="#30363d"/>
+
+          <text y="100" fill="#58a6ff">&gt; Step: Thực thi JUnit Test (./gradlew test)</text>
+          <text y="118" fill="#34d399">Gradle distribution restored from cache</text>
+          <text y="136" fill="#34d399">All dependencies found in cache (No download)</text>
+          <text y="154" fill="#8b949e">&gt; Task :compileJava UP-TO-DATE</text>
+          <text y="172" fill="#8b949e">&gt; Task :testClasses</text>
+          <text y="190" fill="#8b949e">&gt; Task :test</text>
+          <text y="208" fill="#3fb950">DemoApplicationTests &gt; PASSED</text>
+          <text y="226" fill="#3fb950" font-weight="bold">BUILD SUCCESSFUL in 6s (Giảm từ 28s xuống 6s)</text>
+
+          <line x1="0" y1="240" x2="405" y2="240" stroke="#30363d"/>
+
+          <text y="260" fill="#58a6ff">&gt; Step: Đóng gói bootJar</text>
+          <text y="278" fill="#3fb950" font-weight="bold">BUILD SUCCESSFUL in 8s (Giảm từ 21s xuống 8s)</text>
+
+          <line x1="0" y1="295" x2="405" y2="295" stroke="#30363d"/>
+
+          <text y="315" fill="#58a6ff">&gt; Post Step: Cache Gradle Dependencies</text>
+          <text y="333" fill="#cbd5e1">Cache size unchanged. Skip uploading.</text>
+
+          <!-- Run 2 summary box -->
+          <rect y="380" width="405" height="110" rx="6" fill="#022c22" stroke="#238636" stroke-width="1"/>
+          <text x="15" y="405" font-family="sans-serif" font-size="11" font-weight="700" fill="#6ee7b7">TỔNG KẾT RUN 2 (TỐI ƯU SIÊU TỐC):</text>
+          <text x="15" y="425" font-family="sans-serif" font-size="10" fill="#cbd5e1">• Setup-java: 2s (Khôi phục cache thần tốc)</text>
+          <text x="15" y="443" font-family="sans-serif" font-size="10" fill="#cbd5e1">• ./gradlew test: 6s (Nhanh gấp 4.6 lần)</text>
+          <text x="15" y="461" font-family="sans-serif" font-size="10" fill="#cbd5e1">• ./gradlew bootJar: 8s (Nhanh gấp 2.6 lần)</text>
+          <text x="15" y="479" font-family="sans-serif" font-size="11" font-weight="700" fill="#3fb950">• TỔNG THỜI GIAN: 19 GIÂY (GIẢM 67.2%)</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
